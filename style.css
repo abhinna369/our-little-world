@@ -13,8 +13,6 @@ background:#000;
 color:#fff;
 }
 
-/* ---------- COMMON ---------- */
-
 .screen{
 position:absolute;
 top:0;
@@ -36,8 +34,8 @@ pointer-events:none;
 /* ---------- INTRO ---------- */
 
 #intro{
-background:linear-gradient(180deg,#040814,#0d1f47,#1b3d72);
-z-index:2;
+background:linear-gradient(180deg,#030712,#0b1d44,#183d73);
+z-index:3;
 }
 
 .stars{
@@ -49,22 +47,16 @@ radial-gradient(white 1px,transparent 1px),
 radial-gradient(white 1px,transparent 1px);
 background-size:70px 70px;
 background-position:0 0,35px 35px;
-animation:stars 20s linear infinite;
+animation:starsMove 20s linear infinite;
 opacity:.5;
 }
 
-@keyframes stars{
-from{
-transform:translateY(0);
-}
-to{
-transform:translateY(50px);
-}
+@keyframes starsMove{
+from{transform:translateY(0);}
+to{transform:translateY(50px);}
 }
 
 .content{
-position:relative;
-z-index:5;
 width:90%;
 max-width:700px;
 padding:40px;
@@ -72,17 +64,18 @@ text-align:center;
 background:rgba(255,255,255,.08);
 backdrop-filter:blur(12px);
 border-radius:25px;
+z-index:5;
 }
 
 .content h1{
 font-size:3rem;
 margin-bottom:10px;
-text-shadow:0 0 18px #ff5a9c;
+text-shadow:0 0 20px #ff5a9c;
 }
 
 .content h2{
 margin-bottom:25px;
-color:#ffd8e8;
+color:#ffd7e8;
 }
 
 #typing{
@@ -98,10 +91,10 @@ button{
 padding:16px 34px;
 border:none;
 border-radius:50px;
-background:#ff4f8b;
-color:#fff;
 font-size:18px;
 cursor:pointer;
+background:#ff4f8b;
+color:white;
 box-shadow:0 0 20px rgba(255,79,139,.6);
 transition:.3s;
 }
@@ -116,24 +109,79 @@ transform:scale(1.05);
 background:url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1800&q=80");
 background-size:cover;
 background-position:center;
-opacity:0;
-visibility:hidden;
-z-index:1;
-}
-
-#beach.active{
-opacity:1;
-visibility:visible;
+z-index:2;
 }
 
 .overlay{
 position:absolute;
 width:100%;
 height:100%;
-background:linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.35));
+background:rgba(0,0,0,.3);
 }
 
 .beach-content{
+width:90%;
+max-width:700px;
+padding:35px;
+text-align:center;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(12px);
+border-radius:25px;
+z-index:5;
+}
+
+.shell{
+font-size:60px;
+cursor:pointer;
+animation:float 2s ease-in-out infinite;
+margin:20px 0;
+}
+
+@keyframes float{
+50%{
+transform:translateY(-10px);
+}
+}
+
+#memory{
+opacity:1;
+margin:20px 0;
+}
+
+/* ---------- RAIN ---------- */
+
+#rain{
+background:linear-gradient(#283c63,#1b2d4a,#101827);
+overflow:hidden;
+z-index:1;
+}
+
+.rain-bg{
+position:absolute;
+width:100%;
+height:100%;
+background-image:
+repeating-linear-gradient(
+transparent 0px,
+transparent 12px,
+rgba(255,255,255,.35) 13px,
+rgba(255,255,255,.35) 15px
+);
+background-size:3px 25px;
+animation:rainFall .4s linear infinite;
+opacity:.45;
+}
+
+@keyframes rainFall{
+from{
+transform:translateY(-40px);
+}
+to{
+transform:translateY(40px);
+}
+}
+
+.rain-card{
 position:relative;
 z-index:5;
 width:90%;
@@ -141,81 +189,45 @@ max-width:700px;
 padding:35px;
 text-align:center;
 background:rgba(255,255,255,.08);
-backdrop-filter:blur(10px);
+backdrop-filter:blur(12px);
 border-radius:25px;
 }
 
-.beach-content h1{
-font-size:2.8rem;
+.rain-card h1{
+font-size:2.6rem;
 margin-bottom:10px;
 }
 
-.beach-content h2{
-margin-bottom:25px;
-color:#ffe4ef;
-}
-
-#dialogue{
-font-size:20px;
-line-height:1.8;
-margin-bottom:30px;
-}
-
-.shell{
-font-size:60px;
-cursor:pointer;
-animation:float 2s ease-in-out infinite;
+.rain-card h2{
 margin-bottom:20px;
+color:#ffe6f0;
 }
 
-@keyframes float{
-0%{
-transform:translateY(0);
-}
-50%{
-transform:translateY(-10px);
-}
-100%{
-transform:translateY(0);
-}
-}
-
-#memory{
-opacity:0;
-visibility:hidden;
-transition:.6s;
-font-size:18px;
+#rainText,
+#rainMemory{
 line-height:1.8;
-margin-bottom:30px;
+font-size:18px;
+margin:20px 0;
 }
 
-#memory.show{
-opacity:1;
-visibility:visible;
+.umbrella{
+font-size:65px;
+animation:umbrella 2.5s ease-in-out infinite;
+margin:25px 0;
 }
 
-#continueBtn{
-display:none;
+@keyframes umbrella{
+50%{
+transform:translateY(-12px) rotate(-4deg);
 }
-
-/* ---------- MOBILE ---------- */
+}
 
 @media(max-width:768px){
 
 .content h1,
-.beach-content h1{
+.beach-content h1,
+.rain-card h1{
 font-size:2.2rem;
-}
-
-.content h2,
-.beach-content h2{
-font-size:1.2rem;
-}
-
-#typing,
-#dialogue,
-#memory{
-font-size:18px;
 }
 
 button{
