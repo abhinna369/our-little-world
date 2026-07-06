@@ -1,80 +1,87 @@
 const messages = [
-  "Hi Chuiimuii... ❤️",
-  "Today I want to take uuu on a journey...",
-  "Not through a website...",
-  "But through my heart...",
-  "Take my hand... Let's begin our little world. ✨"
+"Hi Chuiimuii... ❤️",
+"Today I want to take uuu on a journey...",
+"Not through a website...",
+"But through my heart...",
+"Take my hand... Let's begin our little world. ✨"
 ];
 
 const typing = document.getElementById("typing");
 const startBtn = document.getElementById("startBtn");
 
 let line = 0;
-let char = 0;
+let character = 0;
 
 startBtn.style.display = "none";
 
-function typeWriter() {
+function typeWriter(){
 
-    if (line >= messages.length) {
+    if(line >= messages.length){
         startBtn.style.display = "inline-block";
         return;
     }
 
-    if (char < messages[line].length) {
-        typing.innerHTML += messages[line].charAt(char);
-        char++;
-        setTimeout(typeWriter, 45);
-    } else {
+    if(character < messages[line].length){
+
+        typing.innerHTML += messages[line].charAt(character);
+
+        character++;
+
+        setTimeout(typeWriter,45);
+
+    }else{
+
         typing.innerHTML += "<br><br>";
+
         line++;
-        char = 0;
-        setTimeout(typeWriter, 700);
+
+        character = 0;
+
+        setTimeout(typeWriter,700);
+
     }
+
 }
 
-window.onload = () => {
-    setTimeout(typeWriter, 800);
+window.onload=function(){
+
+    setTimeout(typeWriter,800);
+
 };
 
-const intro = document.getElementById("intro");
-const beach = document.getElementById("beach");
+const intro=document.getElementById("intro");
+const beach=document.getElementById("beach");
 
-startBtn.addEventListener("click", () => {
+startBtn.onclick=function(){
 
-    intro.style.opacity = "0";
+    intro.style.opacity="0";
 
-    setTimeout(() => {
+    setTimeout(function(){
 
         intro.classList.add("hidden");
 
-        beach.classList.remove("hidden");
+        beach.classList.add("active");
 
-        beach.style.opacity = "0";
+    },1000);
 
-        setTimeout(() => {
-            beach.style.opacity = "1";
-        }, 100);
+};
 
-    }, 1200);
+const shell=document.querySelector(".shell");
 
-});
+const memory=document.getElementById("memory");
 
-const shell = document.querySelector(".shell");
-const memory = document.getElementById("memory");
-const continueBtn = document.getElementById("continueBtn");
+const continueBtn=document.getElementById("continueBtn");
 
-shell.addEventListener("click", () => {
+shell.onclick=function(){
 
-    memory.classList.remove("hidden");
+    memory.classList.add("show");
 
-    continueBtn.style.display = "inline-block";
+    continueBtn.style.display="inline-block";
 
-    shell.style.transform = "scale(1.2)";
-});
+};
 
-continueBtn.addEventListener("click", () => {
+continueBtn.onclick=function(){
 
-    alert("🌧️ Rain Chapter is coming in the next update ❤️");
+    alert("🌧️ Rain Journey Coming Soon ❤️");
 
-});
+};
